@@ -117,15 +117,32 @@ classdef folderBrowserGUI < matlab.apps.AppBase
                     for f_in=1:length(dr)
                         file_name_cell{f_in}= dr(f_in).name;
                     end
-   
-                    folderBrowser.fileNames=utilFun.sortByNumbers(file_name_cell.');
+                    
+                    folderBrowser.fileNames=folderBrowserGUI.sortByNumbers(file_name_cell.');
                     
                 end
             else
-                    folderBrowser.fileNames=[];
+                folderBrowser.fileNames=[];
             end
         end
         
+        
+        
+    end
+    
+    methods (Static = true)
+        
+        function sortedCell=sortByNumbers(unsortedCell)
+            digits=regexp(unsortedCell,'\d');
+            values=zeros(length(unsortedCell),1);
+            
+            for I=1:length(unsortedCell)
+                values(I)=str2double(unsortedCell{I}(digits{I}));
+            end
+            
+            [~,I]=sort(values);
+            sortedCell=unsortedCell(I);
         end
-
+    end
 end
+
