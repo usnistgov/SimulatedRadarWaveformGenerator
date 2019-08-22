@@ -116,7 +116,31 @@ classdef interferenceAdder
             %            waveformDurationMode: 'fix to'
             %           fixedWaveformDuration: 80
             rangedBmOrdB=lowerVal:stepVal:upperVal;
-            
+            % add baseband freq shift
+            radarSignalCenterFreq=zeros(length(waveformCell),1);
+            if strcmp(this.inParameters.wgn.basebandFreqMode,'set at')||strcmp(this.inParameters.wgn.basebandFreqMode,'random between +-')
+                if strcmp(this.inParameters.wgn.basebandFreqMode,'set at')
+                    radarSignalCenterFreq=this.inParameters.wgn.basebandFreqValue*ones(length(waveformCell),1);
+                end
+                if strcmp(this.inParameters.wgn.basebandFreqMode,'random between +-')
+                    frqBound=(this.inParameters.wgn.basebandFreqValue/100)*(allWaveformTable.SamplingFrequency/2);
+                    radarSignalCenterFreq=arrayfun(@(x) randi([-1*x,x]),frqBound);
+                end
+                if this.inParameters.wgn.useParallel
+                    parfor J=1:numel(waveformCell)
+                        t=(0:length(waveformCell{J})-1).'/allWaveformTable.SamplingFrequency(J);
+                        waveformCell{J}=waveformCell{J}.*exp(2i*pi*radarSignalCenterFreq(J)*t);
+                        %waveformCell
+                    end
+                else
+                    for J=1:numel(waveformCell)
+                        t=(0:length(waveformCell{J})-1).'/allWaveformTable.SamplingFrequency(J);
+                        waveformCell{J}=waveformCell{J}.*exp(2i*pi*radarSignalCenterFreq(J)*t);
+                        %waveformCell
+                    end
+                end
+            end
+            % end baseband freq shift
             if this.inParameters.wgn.useParallel 
                 parfor I=1:length(waveformCell)
                     peakPer1MHz(I,1)=measurePeakIn1MHz(this,waveformCell{I},allWaveformTable.SamplingFrequency(I));
@@ -131,6 +155,7 @@ classdef interferenceAdder
             
             radarStatus=true(length(waveformCell),1);
             allWaveformTable=addvars(allWaveformTable,radarStatus);
+            allWaveformTable=addvars(allWaveformTable,radarSignalCenterFreq);
             
             if strcmp(this.inParameters.wgn.powerLevelMode,'Power Level Range')
                 noisePowerTotaldBw=randomNoisePowdBmOrSNRdB-30+pow2db(allWaveformTable.SamplingFrequency./1e6);
