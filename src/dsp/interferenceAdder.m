@@ -86,6 +86,7 @@ classdef interferenceAdder
             stepVal=this.inParameters.wgn.rangedBmOrdB(2);
             upperVal=this.inParameters.wgn.rangedBmOrdB(3);
             %sigScale=this.inParameters.wgn.sigScale;
+            radarSignalStartTime=zeros(length(waveformCell),1);
             if strcmp(this.inParameters.wgn.waveformDurationMode,'fix to max')||strcmp(this.inParameters.wgn.waveformDurationMode,'fix to')
                 waveformLength=cellfun(@length,waveformCell);
                 if strcmp(this.inParameters.wgn.waveformDurationMode,'fix to max')
@@ -106,6 +107,7 @@ classdef interferenceAdder
                     temp(waveformStartFrom(I):waveformEndsAt(I))=waveformCell{I}(1:waveformOriginalLengthTrim(I));
                     waveformCell{I}=temp;
                 end
+                 radarSignalStartTime=waveformStartFrom./allWaveformTable.SamplingFrequency;
             end
             %                   example of parameter struct
             %                 radarPeakPowerdBmP1MHzFixed: NaN
@@ -156,6 +158,7 @@ classdef interferenceAdder
             radarStatus=true(length(waveformCell),1);
             allWaveformTable=addvars(allWaveformTable,radarStatus);
             allWaveformTable=addvars(allWaveformTable,radarSignalCenterFreq);
+            allWaveformTable=addvars(allWaveformTable,radarSignalStartTime);
             
             if strcmp(this.inParameters.wgn.powerLevelMode,'Power Level Range')
                 noisePowerTotaldBw=randomNoisePowdBmOrSNRdB-30+pow2db(allWaveformTable.SamplingFrequency./1e6);
@@ -218,8 +221,8 @@ classdef interferenceAdder
                 
             end
             
-            durationSec=cellfun(@length,waveformCell)./allWaveformTable.SamplingFrequency;
-            allWaveformTable=addvars(allWaveformTable,durationSec);
+            duration=cellfun(@length,waveformCell)./allWaveformTable.SamplingFrequency;
+            allWaveformTable=addvars(allWaveformTable,duration);
             % randomize twice 
             newIndex=randperm(length(waveformCell)).';
             waveformCell=waveformCell(newIndex,:);
