@@ -120,13 +120,23 @@ classdef interferenceAdder
             rangedBmOrdB=lowerVal:stepVal:upperVal;
             % add baseband freq shift
             radarSignalCenterFreq=zeros(length(waveformCell),1);
-            if strcmp(this.inParameters.wgn.basebandFreqMode,'set at')||strcmp(this.inParameters.wgn.basebandFreqMode,'random between +-')
+            if strcmp(this.inParameters.wgn.basebandFreqMode,'set at')||strcmp(this.inParameters.wgn.basebandFreqMode,'random')
                 if strcmp(this.inParameters.wgn.basebandFreqMode,'set at')
                     radarSignalCenterFreq=this.inParameters.wgn.basebandFreqValue*ones(length(waveformCell),1);
                 end
-                if strcmp(this.inParameters.wgn.basebandFreqMode,'random between +-')
-                    frqBound=(this.inParameters.wgn.basebandFreqValue/100)*(allWaveformTable.SamplingFrequency/2);
-                    radarSignalCenterFreq=arrayfun(@(x) randi([-1*x,x]),frqBound);
+                if strcmp(this.inParameters.wgn.basebandFreqMode,'random')
+                    %frqBound=(this.inParameters.wgn.basebandFreqValue/100)*(allWaveformTable.SamplingFrequency/2);
+                    %radarSignalCenterFreq=arrayfun(@(x) randi([-1*x,x]),frqBound);
+                    %get half of chirp width
+                     halfBandwidth=allWaveformTable.ChirpWidth/2;
+                     % for non-LFM (P0N#1,P0N#2) assume the bandwidth is 2 MHz, i.e. guard 1Mz from each side
+                     halfBandwidth(isnan(halfBandwidth))=1e6;
+                     %calculate the guard from the both sides, i.e. guard by half bandwidth from each side
+                     frqBound=((allWaveformTable.SamplingFrequency/2)-halfBandwidth);
+                     % if the bandwidth is larger than the samp rate set freq shift to zero
+                     frqBound(frqBound<=0)=0;
+                     % calculate shift freq
+                     radarSignalCenterFreq=arrayfun(@(x) randi([-1*x,x]),frqBound);
                 end
                 if this.inParameters.wgn.useParallel
                     parfor J=1:numel(waveformCell)
