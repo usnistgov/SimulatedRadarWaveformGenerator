@@ -92,11 +92,10 @@ This software consists of a framework and a graphical user interface (GUI). The 
 ## 4.2. Run from Deployed executable
 
 ### 4.2.1. Compile from source 
-To generate executable for the GUI tool.
+To generate executable for the GUI tool:
+* Use either mcc see compileSimulatedRadarWG.m, or use MATLAB deploytool.
+* All necessary toolboxes are required during compilation in addition to the MATLAB Compiler
 
-    * Use either mcc see compileSimulatedRadarWG.m, or use MATLAB deploytool.
-    * all necessary toolboxes are required during compilation in addition to the MATLAB Compiler
-    * see [Prerequisites:](#5-prerequisites) for more details
 
 ### 4.2.2. Precompiled Executable
     If precompiled executable is needed, please contact us.
