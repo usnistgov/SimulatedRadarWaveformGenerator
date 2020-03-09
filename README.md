@@ -1,7 +1,7 @@
-# Surrogate Radar Waveform Generator
+# Simulated Radar Waveform Generator
 <!-- TOC -->
 
-- [3.5 GHz Waveform Generation for Testing and Development of ESC Detectors](#35-ghz-waveform-generation-for-testing-and-development-of-esc-detectors)
+- [Simulated Radar Waveforms Generator for the 3.5 GHz CBRS Band](#Simulated-Radar-Waveforms-Generator-for-the-3.5-GHz-CBRS-Band)
 - [1. Legal Disclaimers](#1-legal-disclaimers)
     - [1.1. Software Disclaimer](#11-software-disclaimer)
     - [1.2. Commercial Disclaimer](#12-commercial-disclaimer)
@@ -59,37 +59,15 @@
  
 # 2. Project Summary
 
-Environmental Sensing Capability (ESC) sensors will be used in the 3.5 GHz Citizens Broadband Radio Service (CBRS) to detect and report the presence of federal incumbent radar signals in 100 MHz of spectrum. Unlike traditional radar detection schemes, ESC sensors will not have full knowledge of radar waveform parameters such as pulse repetition, pulse duration and center frequency of the incumbent radar. Furthermore, ESC sensors are expected to detect incumbent radar and identify its operational channel in the presence of interference from CBRS devices and adjacent-band emissions. This paper presents signal processing procedures and a software tool for generating ESC test waveforms. These waveforms cover multiple testing scenarios in which one or more radars operate in the presence of interference signals such as LTE TDD signals and adjacent-band radar emissions. We utilize field-measured radar waveforms acquired by the National Advanced Spectrum and Communications Test Network (NASCTN) in the 3.5 GHz band with a 225 MHz sampling rate. Field-measured waveforms include channel propagation effects such as time-varying multipath fading and pulse dispersion, similar to what an actual ESC sensor will observe. We present the signal processing blocks for decimating the measured waveforms and mixing them with interference signals at specified frequency offsets. Gains are adjusted to achieve a desired signal-to-interference ratio (SIR), defined as the ratio of the peak power of the measured radar waveform to the peak or average power of the interference. In addition, we provide an open-source software tool with a graphical user interface (GUI) to visualize the resulting waveforms and to automate the process of generating the waveforms. The tool can randomize signal parameters such as start time, frequency, SIR. The generated waveforms are saved as 90 second, 25 MHz sampled in-phase/quadrature (IQ) data files, and their parameters are saved in JavaScript Object Notation (JSON) format. The waveforms and their parameters can be used by ESC applicants and developers for training and testing incumbent radar detection algorithms.
-
-For more information about the project see [WInnComm Presentation](docs/3.5_GHz_Waveform_Generation_for_Testing_and_Development_of_ESC_Detectors_WInnComm2017.pdf)
+The simulated radar waveform generator is a software tool built with MATLAB to generate radar waveform datasets. The datasets can be used to develop and test detection algorithms for the 3.5 GHz CBRS or similar bands where the primary users of the band are federal incumbent radar systems. The software tool generates radar waveforms and randomizes the radar waveform parameters. The ranges of parameters values are selected based on NTIA testing procedures for ESC certification. The parameters are pulse modulation, pulse duration, pulse repetition rate, chirp width
+and pulses per burst. In addition, we randomize the following parameters: start time, SNR, and the baseband center frequency of the radar signal.  
 
 ## 2.1. Design Methodology
-This project consists of a framework and a GUI, both developed in MATLAB, see the [Development Details](#3-development-details) section for more details.
+This software consists of a framework and a graphical user interface (GUI). The framework generates simulated radar signals, mixes them noise and manages the random generation parameters. GUI simplifies the settings of the parameters. 
 
-### 2.1.1. Framework
-This project is built off a simple MATLAB framework that:
-1. Reads/Write large files in smaller and more manageable segments.
-2. Manage the state of the system (eg: time, filter) as to not introduce discontinuity resulting from the segmented read-write.
-3. Automate the generation of multiple waveform files, using MATLAB's parallel toolbox for parallelism.
-
-This framework allows for many other tools to be created building on this framework, such as the included decimator.
-
-### 2.1.2. GUI
-A GUI was built upon the framework to improve user experience. It can preview segments of the waveform via software spectrum/spectrogram analyzer and time scope  before the generation process. This requires adding the following signal (25 MHz sampling rate) sources:
-* 2 two radar one files
-* 2 LTE signals
-* 1 ABI signal (e.g., radar three file)
-
-However these signals can be turned Of/Off interactively.
-After previewing the waveform, the parameters can be loaded to the generation panel and further adjusting the parameters if required. The generation panel allows single file generation with fixed parameters, or multiple file generation with either fixed, intervals, or random parameters. In the multiple file generation the signal sources are still randomized even if the other parameters are fixed.  
-* To make use of Power levels/SIR setting and estimation, radar peaks and thier location must be estimated and saved to samefilename_pks.mat files before hand.
-
-* By default, the GUI tool expects an *.xlsx file that contains each *.dat file name (IQ 16-bit integers) for radar files along with a parameter ADCScaleFactor for floating point conversion.
-
-* TDD LTE signals can be generated via MATLAB LTE toolbox or captured from an RF device. In addition, channel effect can be applied in the GUI for the simulated LTE signals.
 
 # 3. Development Details
-- Current development using MATLAB 2017b
+- Current development environment: MATLAB 2019b
 - The Generation tool can be compiled and deployed. See the section [How to run](#4-how-to-run) for more details
 
  # 4. How to run
@@ -98,9 +76,8 @@ After previewing the waveform, the parameters can be loaded to the generation pa
 * Add the required libraries to MATLAB path by adding the following folders:
     * \src\dsp\
     * \src\util\
-* To use the GUI tool as intended with field-measured waveforms, some pre-processing on waveforms is required, i.e., decimation and radar peak estimation, see examples at \src\tests\
 
-* At the MATLAB command prompt  change to dir \src\app\ and run appdesigner('ESCWaveformGenerator.mlapp')
+* At the MATLAB command prompt  change to dir \src\app\ and run appdesigner('simulatedRadarWaveformGenerator.mlapp')
 
 * Requires the following toolboxes to run all the functionalities:
     * Signal Processing Toolbox
@@ -108,20 +85,25 @@ After previewing the waveform, the parameters can be loaded to the generation pa
     * 'Communications System Toolbox'
     * 'Parallel Computing Toolbox'
     * 'MATLAB Distributed Computing Server'
+    * 'Phased Array System Toolbox'
 
-Running directly in MATLAB script requires further development to make use of the framework similar to that used in the GUI.
+
 
 ## 4.2. Run from Deployed executable
 
 ### 4.2.1. Compile from source 
 To generate executable for the GUI tool.
 
-    * Use either mcc see CompileESCGenerator.m, or use MATLAB deploytool.
-    * all necessary toolboxes are required during compilation in addition to MATLAB Compiler
+    * Use either mcc see compileSimulatedRadarWG.m, or use MATLAB deploytool.
+    * all necessary toolboxes are required during compilation in addition to the MATLAB Compiler
     * see [Prerequisites:](#5-prerequisites) for more details
 
 ### 4.2.2. Precompiled Executable
     If precompiled executable is needed, please contact us.
     
-# 5. Prerequisites:
-MATLAB prerequisites for deployment can be found in [Matlab Prerequisites](docs/Matlab_Prerequisites.txt)
+# 5. Prerequisites for deployment:
+For running a precompiled executable,  MATLAB prerequisites for deployment must be installed. Instructions can be found in [Matlab Prerequisites](docs/Matlab_Prerequisites.txt).
+
+# 6. Waveform Generation:
+
+# 7. References: 
