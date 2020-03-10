@@ -120,7 +120,8 @@ For more information see additional references below.
 
 # 7. References:
 
-* R. Caromi, M. Souryal, T. Hall  “RF Dataset of Incumbent Radar Signals in the 3.5 GHz CBRS Band” https://www.nist.gov/publications/rf-dataset-incumbent-radar-signals-35-ghz-cbrs-band
+* R. Caromi, M. Souryal, T. Hall  “RF Dataset of Incumbent Radar Signals in the 3.5 GHz CBRS Band,” Journal of Research (NIST JRES), Volume 124, Dec. 2019, available at https://www.nist.gov/publications/rf-dataset-incumbent-radar-signals-35-ghz-cbrs-band
 
-* T. Hall, R. Caromi, M. Souryal, and A. Wunderlich, "Reference Datasets for Training and Evaluating RF Signal Detection and Classification Models," to appear in Proc. IEEE GLOBECOM Workshop on Advancements in Spectrum Sharing, Dec. 2019.
+* T. Hall, R. Caromi, M. Souryal, and A. Wunderlich, "Reference Datasets for Training and Evaluating RF Signal Detection and Classification Models," to appear in Proc. IEEE GLOBECOM Workshop on Advancements in Spectrum Sharing, Dec. 2019, available at https://www.nist.gov/publications/reference-data-sets-training-and-evaluating-rf-signal-detection-and-classification
+
 
