@@ -98,7 +98,7 @@ To generate executable for the GUI tool:
 
 
 ### 4.2.2. Precompiled Executable
-    If precompiled executable is needed, please contact us.
+If precompiled executable is needed, please contact us.
     
 # 5. Prerequisites for deployment:
 For running a precompiled executable,  MATLAB prerequisites for deployment must be installed. Instructions can be found in [Matlab Prerequisites](docs/Matlab_Prerequisites.txt).
