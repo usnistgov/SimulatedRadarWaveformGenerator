@@ -104,7 +104,7 @@ If precompiled executable is needed, please contact us.
 For running a precompiled executable,  MATLAB prerequisites for deployment must be installed. Instructions can be found in [Matlab Prerequisites](docs/Matlab_Prerequisites.txt).
 
 # 6. Waveform Generation:
-The first tab in the application is for generating waveforms. Five modulation bins are available. You can set the number of waveforms and the sampling frequency. The random waveform parameters are selected according to Table 1 in []. For P0N#2, the type of phase coding can also be changed. 
+The first tab in the application is for generating waveforms. Five modulation bins are available. You can set the number of waveforms and the sampling frequency. The random waveform parameters are selected according to Table 1 in [1]. For P0N#2, the type of phase coding can also be changed. 
 ![alt text][GUI]
 
 [GUI]: docs/figs/SimRadarWG_GUI.PNG "Simulated radar waveform generator GUI"
@@ -120,8 +120,12 @@ For more information see additional references below.
 
 # 7. References:
 
-* R. Caromi, M. Souryal, T. Hall  “RF Dataset of Incumbent Radar Signals in the 3.5 GHz CBRS Band,” Journal of Research (NIST JRES), Volume 124, Dec. 2019, available at https://www.nist.gov/publications/rf-dataset-incumbent-radar-signals-35-ghz-cbrs-band
+1. Sanders FH, Carroll JE, Sanders GA, Sole RL, Devereux JS, Drocella EF (2017) Procedures for laboratory testing of
+environmental sensing capability sensor devices (National Telecommunications and Information Administration, Boulder, CO),
+Technical Memorandum TM 18-527. Available at http://www.its.bldrdoc.gov/publications/3184.aspx. 
 
-* T. Hall, R. Caromi, M. Souryal, and A. Wunderlich, "Reference Datasets for Training and Evaluating RF Signal Detection and Classification Models," to appear in Proc. IEEE GLOBECOM Workshop on Advancements in Spectrum Sharing, Dec. 2019, available at https://www.nist.gov/publications/reference-data-sets-training-and-evaluating-rf-signal-detection-and-classification
+2. R. Caromi, M. Souryal, T. Hall  “RF Dataset of Incumbent Radar Signals in the 3.5 GHz CBRS Band,” Journal of Research (NIST JRES), Volume 124, Dec. 2019, available at https://www.nist.gov/publications/rf-dataset-incumbent-radar-signals-35-ghz-cbrs-band
+
+3. T. Hall, R. Caromi, M. Souryal, and A. Wunderlich, "Reference Datasets for Training and Evaluating RF Signal Detection and Classification Models," to appear in Proc. IEEE GLOBECOM Workshop on Advancements in Spectrum Sharing, Dec. 2019, available at https://www.nist.gov/publications/reference-data-sets-training-and-evaluating-rf-signal-detection-and-classification
 
 
