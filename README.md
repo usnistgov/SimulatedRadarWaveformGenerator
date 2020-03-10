@@ -104,5 +104,13 @@ If precompiled executable is needed, please contact us.
 For running a precompiled executable,  MATLAB prerequisites for deployment must be installed. Instructions can be found in [Matlab Prerequisites](docs/Matlab_Prerequisites.txt).
 
 # 6. Waveform Generation:
+Reference-style: 
+![alt text][GUI]
+
+[GUI]: docs/figs/SimRadarWG_GUI.PNG "Simulated radar waveform generator GUI"
+
+![alt text][GUINoiseAdder]
+
+[GUINoiseAdder]: docs/figs/SimRadarWG_AWGN_GUI.PNG "Simulated radar waveform generator GUI noise addition"
 
 # 7. References: 
