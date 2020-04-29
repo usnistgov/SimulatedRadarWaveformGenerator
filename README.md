@@ -104,7 +104,8 @@ If precompiled executable is needed, please contact us.
 For running a precompiled executable,  MATLAB prerequisites for deployment must be installed. Instructions can be found in [Matlab Prerequisites](docs/Matlab_Prerequisites.txt).
 
 # 6. Waveform Generation:
-The first tab in the application is for generating waveforms. Five modulation bins are available. You can set the number of waveforms and the sampling frequency. The random waveform parameters are selected according to Table 1 in [1]. For P0N#2, the type of phase coding can also be changed. 
+The first tab in the application is for generating waveforms. Five modulation bins are available. You can set the number of waveforms and the sampling frequency. The random waveform parameters are selected according to Table 1 in [1]. For P0N#2, the type of phase coding can also be changed.
+
 ![alt text][GUI]
 
 [GUI]: docs/figs/SimRadarWG_GUI.PNG "Simulated radar waveform generator GUI"
