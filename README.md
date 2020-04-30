@@ -62,7 +62,7 @@ The simulated radar waveform generator is a software tool built with MATLAB to g
 and pulses per burst. In addition, we randomize the following parameters: start time, SNR, and the baseband center frequency of the radar signal.  
 
 ## 2.1. Design Methodology
-This software consists of a framework and a graphical user interface (GUI). The framework generates simulated radar signals, mixes them noise and manages the random generation parameters. GUI simplifies the settings of the parameters. 
+This software consists of a framework and a graphical user interface (GUI). The framework generates simulated radar signals, mixes them with noise and manages the random generation parameters. The GUI simplifies the settings of the parameters. 
 
 
 # 3. Development Details
