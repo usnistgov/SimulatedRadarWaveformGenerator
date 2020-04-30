@@ -1,7 +1,6 @@
-# Simulated Radar Waveform Generator
+# Simulated Radar Waveform and RF Dataset Generator for Incumbent Signals in the 3.5 GHz CBRS Band
 <!-- TOC -->
 
-- [Simulated Radar Waveforms Generator for the 3.5 GHz CBRS Band](#Simulated-Radar-Waveforms-Generator-for-the-3.5-GHz-CBRS-Band)
 - [1. Legal Disclaimers](#1-legal-disclaimers)
     - [1.1. Software Disclaimer](#11-software-disclaimer)
     - [1.2. Commercial Disclaimer](#12-commercial-disclaimer)
