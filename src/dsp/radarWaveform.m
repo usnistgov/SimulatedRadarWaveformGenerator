@@ -82,12 +82,6 @@ classdef radarWaveform
                 this.sampleRate = sampleRate;
                 this.pulseModulation=pulseModulation;
                 this.numWaves=numWaves;
-                %                 else
-                %                     msgID = 'radarWaveform:initialization';
-                %                     msgtext =['pulse modulation type must be one of the following: ',strjoin(this.pulseModulationTypes)];
-                %                     this.ERROR=MException(msgID,msgtext);
-                %                     throw(this.ERROR);
-                %                 end
             end
         end
         
@@ -120,17 +114,6 @@ classdef radarWaveform
                 throw(this.ERROR);
             end
         end
-        
-        %        function this=set.wgnState(this,wgnState)
-        %             if islogical(wgnState)
-        %                this.useParallel=wgnState;
-        %             else
-        %                 msgID = 'radarWaveform:initialization';
-        %                 msgtext ='wgnState must be logical';
-        %                 this.ERROR=MException(msgID,msgtext);
-        %                 throw(this.ERROR);
-        %             end
-        %         end
 
         function this=set.PCType(this,PCType)
             if ismember(PCType,this.PCTypes)
@@ -185,10 +168,6 @@ classdef radarWaveform
  
             switch this.pulseModulation
                 case this.pulseModulationTypes{1}
-                    %                     tempW = phased.RectangularWaveform;
-                    %                     tempW.SampleRate = this.sampleRate;
-                    %                     this.waveforms=cell(this.numWaves,1);
-                    %                     this.waveforms(:)={tempW};
                     for I=1:this.numWaves
                         
                         this.waveforms{I,1}=phased.RectangularWaveform;
@@ -198,10 +177,6 @@ classdef radarWaveform
                         this.waveforms{I,1}.PulseWidth=this.pulseWidth(I);
                     end
                 case this.pulseModulationTypes{2}
-                    %                     tempW = phased.PhaseCodedWaveform;
-                    %                     tempW.SampleRate = modifySamplingRate(I);
-                    %                     this.waveforms=cell(this.numWaves,1);
-                    %                     this.waveforms(:)={tempW};
                     NumChips=4;
                     chipWidth=this.pulseWidth/NumChips;
                     modifyChipWidth=ceil(chipWidth.*modifySamplingRate)./modifySamplingRate;
@@ -220,11 +195,6 @@ classdef radarWaveform
                         this.waveforms{I,1}.ChipWidth=(modifyChipWidth(I));
                     end
                 case this.pulseModulationTypes(3:end)
-                    %                     tempW = phased.LinearFMWaveform;
-                    %                     tempW.SampleRate = this.sampleRate;
-                    %                     this.waveforms=cell(this.numWaves,1);
-                    %                     this.waveforms(:)={tempW};
-                    %  modifySamplingRate=ceil(this.sampleRate./this.PRR).*this.PRR;
                     for I=1:this.numWaves
                         this.waveforms{I,1}=phased.LinearFMWaveform;
                         this.waveforms{I,1}.SampleRate = modifySamplingRate(I);
@@ -255,7 +225,7 @@ classdef radarWaveform
                     [p,q] = rat(this.sampleRate/this.waveforms{I}.SampleRate,1e-4);
                     waveOut{I,:}=resample(sigOut{I,:},p,q,0,10);% If n = 0, resample performs nearest-neighbor interpolation
                     % resample(sig,p,q,n,Beta) Beta: Shape parameter of Kaiser window, specified as a positive real scalar. Increasing beta widens the mainlobe of the window
-                    % used to design the antialiasing filter and decreases the amplitude of the window’s sidelobes.
+                    % used to design the antialiasing filter and decreases the amplitude of the windowÂ’s sidelobes.
                 end
                 close(progBar);
                 
