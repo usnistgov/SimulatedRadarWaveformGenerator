@@ -74,14 +74,12 @@ classdef interferenceAdder
                 otherwise
                     waveformCell=[];
                     allWaveformTable=[];
-                    %newIndex=[];
             end
             
         end
         
         function [waveformCell,allWaveformTable]= addWGN(this,waveformCell,allWaveformTable)
             %addWGN add wgn to the waveforms
-            %   Detailed explanation goes here
             lowerVal=this.inParameters.wgn.rangedBmOrdB(1);
             stepVal=this.inParameters.wgn.rangedBmOrdB(2);
             upperVal=this.inParameters.wgn.rangedBmOrdB(3);
