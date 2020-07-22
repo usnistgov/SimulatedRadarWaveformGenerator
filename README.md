@@ -71,7 +71,7 @@ This software consists of a MATLAB code and a graphical user interface (GUI). Th
  # 4. How to Run
 ## 4.1. Run in MATLAB
 
-* Add the required libraries by adding the following folders to MATLAB path:
+* Add the following folders to MATLAB path:
     * \src\dsp\
     * \src\util\
 
