@@ -88,14 +88,14 @@ This software consists of a MATLAB code and a graphical user interface (GUI). Th
 
 
 ## 4.2. Run from Deployed Executable
-
+It is possible to compile an executable and run it in a machine without MATLAB installation or license. However, the licenses for MATLAB and the toolboxes are required during compilation. 
 ### 4.2.1. Compile from Source 
 To generate an executable for the software tool:
 * Use either mcc see compileSimulatedRadarWG.m, or use the MATLAB deployment tool "deploytool".
 * All necessary toolboxes are required during compilation in addition to the MATLAB Compiler.
     
 ### 4.2.2. Prerequisites for Deployment:
-For running a precompiled executable,  MATLAB prerequisites for deployment must be installed. Instructions can be found in [Matlab Prerequisites](docs/Matlab_Prerequisites.txt).
+For running a precompiled executable, MATLAB prerequisites for deployment must be installed. Instructions can be found in [Matlab Prerequisites](docs/Matlab_Prerequisites.txt).
 
 # 5. Waveform Generation:
 The first tab in the application is for generating waveforms. Five modulation bins are available. You can set the number of waveforms and the sampling frequency. The random waveform parameters are selected according to Table 1 in [1]. For P0N#2, the type of phase coding can also be changed.
