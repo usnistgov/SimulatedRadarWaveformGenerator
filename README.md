@@ -90,18 +90,14 @@ This software consists of a MATLAB code and a graphical user interface (GUI). Th
 ## 4.2. Run from Deployed Executable
 
 ### 4.2.1. Compile from Source 
-To generate an executable for the GUI tool:
+To generate an executable for the software tool:
 * Use either mcc see compileSimulatedRadarWG.m, or use the MATLAB deployment tool "deploytool".
-* All necessary toolboxes are required during compilation in addition to the MATLAB Compiler
-
-
-### 4.2.2. Precompiled Executable
-If a precompiled executable is needed, please contact us.
+* All necessary toolboxes are required during compilation in addition to the MATLAB Compiler.
     
-# 5. Prerequisites for Deployment:
+### 4.2.2. Prerequisites for Deployment:
 For running a precompiled executable,  MATLAB prerequisites for deployment must be installed. Instructions can be found in [Matlab Prerequisites](docs/Matlab_Prerequisites.txt).
 
-# 6. Waveform Generation:
+# 5. Waveform Generation:
 The first tab in the application is for generating waveforms. Five modulation bins are available. You can set the number of waveforms and the sampling frequency. The random waveform parameters are selected according to Table 1 in [1]. For P0N#2, the type of phase coding can also be changed.
 
 ![alt text][GUI]
@@ -117,7 +113,7 @@ After generating and saving a dataset of waveforms, we load the dataset folder i
 A reference RF dataset was generated using this software. The RF dataset is published at https://doi.org/10.18434/M32116. 
 In addition a manual for using the GUI is available at [Simulated Rada Waveform Generator GUI manual](docs/Simulated_Radar_Waveform_Generator_GUI_manual.pdf). The manual contains a glossary of the parameters that are used for generation. In addition, it includes the exact parameters that were used to generate the reference RF dataset. For more information see the additional references below. 
 
-# 7. References:
+# 6. References:
 
 1.	F. H. Sanders, J. E. Carroll, G. A. Sanders, R. L. Sole, J. S. Devereux, and E. F. Drocella, “Procedures for Laboratory Testing of Environmental Sensing Capability Sensor Devices,” National Telecommunications and Information Administration, Technical Memorandum TM 18-527, Nov. 2017. Available at http://www.its.bldrdoc.gov/publications/3184.aspx.
 2.	R. Caromi, M. Souryal, T. Hall “RF Dataset of Incumbent Radar Signals in the 3.5 GHz CBRS Band,” Journal of Research (NIST JRES), Volume 124, Dec. 2019, available at https://www.nist.gov/publications/rf-dataset-incumbent-radar-signals-35-ghz-cbrs-band
