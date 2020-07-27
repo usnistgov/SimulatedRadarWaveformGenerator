@@ -111,7 +111,9 @@ After generating and saving a dataset of waveforms, we load the dataset folder i
 [GUINoiseAdder]: docs/figs/SimRadarWG_AWGN_GUI.PNG "Simulated radar waveform generator GUI noise addition"
 
 A reference RF dataset was generated using this software. The RF dataset is published at https://doi.org/10.18434/M32116. 
-In addition a manual for using the GUI is available at [Simulated Rada Waveform Generator GUI manual](docs/Simulated_Radar_Waveform_Generator_GUI_manual.pdf). The manual contains a glossary of the parameters that are used for generation. In addition, it includes the exact parameters that were used to generate the reference RF dataset. For more information see the additional references below. 
+In addition a manual for using the GUI is available at [Simulated Rada Waveform Generator GUI manual](docs/Simulated_Radar_Waveform_Generator_GUI_manual.pdf). The manual contains a glossary of the parameters that are used for generation. In addition, it includes the exact parameters that were used to generate the reference RF dataset. For more information see the additional references below.
+
+For citation, use the data record at https://data.nist.gov/od/id/mds2-2229. 
 
 # 6. References:
 
