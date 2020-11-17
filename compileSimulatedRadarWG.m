@@ -44,12 +44,12 @@
 ROOT_DIR=pwd;
 SOURCE_DIR='src';
 BUILD_DIR='bin';
-APP_DIR='bin\app';
+APP_DIR=['bin',filesep,'app'];
 IN_APP_DIR='app';
 DSP_DIR='dsp';
 UTIL_DIR='util';
 RES_DIR='res';
-APP_RES_DIR='bin\res';
+APP_RES_DIR=['bin',filesep,'res'];
 
 ICON_FILE='icon.ico';
 SPLASH_FILE='splash.png';
@@ -76,15 +76,20 @@ SPLASH_FILE=fullfile(ROOT_DIR,SOURCE_DIR,RES_DIR,SPLASH_FILE);
 
 SEARCH_DIR1=fullfile(SOURCE_DIR,DSP_DIR);
 SEARCH_DIR2=fullfile(SOURCE_DIR,UTIL_DIR);
-mcc('-o', APP_NAME,'-W',WinMain,'-T', 'link:exe' ,'-d', OUT_DIR,'-v',APP_SOURCE_PATH,'-I',SEARCH_DIR1,'-I',SEARCH_DIR2,'-r',ICON_PATH);
+
+if ispc
+    mcc('-o', APP_NAME,'-W',WinMain,'-T', 'link:exe' ,'-d', OUT_DIR,'-v',APP_SOURCE_PATH,'-I',SEARCH_DIR1,'-I',SEARCH_DIR2,'-r',ICON_PATH);
+elseif isunix
+    mcc('-o', APP_NAME, '-e', '-d', OUT_DIR,'-v',APP_SOURCE_PATH,'-I',SEARCH_DIR1,'-I',SEARCH_DIR2);
+end
 
 cd(SOURCE_DIR);
 
-copyfile res\CTL_logo.png ..\bin\res\CTL_logo.png;
-copyfile ..\README.md ..\bin\res\README.md;
-copyfile(SPLASH_FILE, '..\bin\app\splash.png')
+copyfile(['res',filesep,'CTL_logo.png'], ['..',filesep,'bin',filesep,'res',filesep,'CTL_logo.png']);
+copyfile(['..',filesep,'README.md'], ['..',filesep,'bin',filesep,'res',filesep,'README.md']);
+copyfile(SPLASH_FILE, ['..',filesep,'bin',filesep,'app',filesep,'splash.png']);
 cd('..')
-
+return
 %% restart matlab
 !matlab &
 exit
