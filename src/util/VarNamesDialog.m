@@ -59,7 +59,8 @@ classdef VarNamesDialog < matlab.apps.AppBase
         function startupFcn(app, mainapp, WaveformDataVariable, SignalStatusVariable, WaveformTableVariable, DataSetRelease)
             % adjust dailog box relative position [left bottom width height]
             dialogPos=app.VariableNames.Position;
-            mainPos=mainapp.MultiRadarWaveformGenerator.Position;
+            % mainPos=mainapp.MultiRadarWaveformGenerator.Position; % note: this class does not exist when code is executed on Linux and halted the code 
+            mainPos=mainapp.UIAxes.Position;
             dialogPos(1)=mainPos(1)+round(mainPos(3)/2)-round(dialogPos(3)/2);
             dialogPos(2)=mainPos(2)+round(mainPos(4))-round(dialogPos(4)/2);
             app.VariableNames.Position=dialogPos;
